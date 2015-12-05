@@ -5,12 +5,60 @@
  */
 package procesarcsv_v2;
 
+import bl.FilaCSV;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author esteban
  */
 public class ProcesarCSV_v2 {
-
+    
+    
+    public void procesarlinea(){
+        
+        String linea;
+        FilaCSV primero;
+        FilaCSV ultimo;
+        
+        try {
+            //FileReader f = new FileReader("/home/esteban/Descargas/casosCSV.csv");
+            FileReader f = new FileReader("/home/esteban/Descargas/PROGRAMACION.csv");
+            BufferedReader b = new BufferedReader(f);
+            
+            b.readLine();
+            
+            while ((linea = b.readLine()) != null) {
+                
+                primero = new FilaCSV(linea);
+                primero = primero.ajustarCodigoMateria(primero);
+                
+                if(primero.existeMateria()){
+                    ultimo=primero;
+                }
+            }
+            
+            b.close();
+            
+        } catch (FileNotFoundException e) {
+            String mnj = "No se encontró el archivo seleccionado\n"
+                    + "Recuerde que el archivo debe ser de extensión xls o xlsx";
+            JOptionPane.showMessageDialog(null, mnj+"\n"+e , "Error",
+            JOptionPane.WARNING_MESSAGE);
+        } catch (IOException ex) {
+            String mnj = "Error al leer el archivo ";
+            JOptionPane.showMessageDialog(null, mnj+"\n"+ex , "Error",
+            JOptionPane.WARNING_MESSAGE);
+        } 
+        
+    }
+   
+    
+    
     /**
      * @param args the command line arguments
      */
