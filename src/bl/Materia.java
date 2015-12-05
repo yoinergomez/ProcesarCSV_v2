@@ -56,7 +56,7 @@ public class Materia {
         this.nombre = nombre;
     }
     
-    public String getcodMateria(){
+    public String getCodMateria(){
         return facultad+departamento+materia;
     }
 }
