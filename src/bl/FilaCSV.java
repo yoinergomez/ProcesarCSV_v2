@@ -65,4 +65,45 @@ public class FilaCSV {
     public boolean existeProfesor(){
         return !cedula.isEmpty();
     }
+    
+    public FilaCSV ajustarCodigoMateria(FilaCSV fila){
+        
+        while(fila.getFac().length()<2 && !fila.getFac().isEmpty()){
+            fila.setFac("0"+fila.getFac());
+        }
+        while(fila.getDep().length()<2 && !fila.getDep().isEmpty()){
+            fila.setDep("0"+fila.getDep());
+        }
+        while(fila.getMat().length()<3 && !fila.getMat().isEmpty()){
+            fila.setMat("0"+fila.getMat());
+        }
+        
+        return fila;
+    }
+
+    public String getFac() {
+        return fac;
+    }
+
+    public void setFac(String fac) {
+        this.fac = fac;
+    }
+
+    public String getDep() {
+        return dep;
+    }
+
+    public void setDep(String dep) {
+        this.dep = dep;
+    }
+
+    public String getMat() {
+        return mat;
+    }
+
+    public void setMat(String mat) {
+        this.mat = mat;
+    }
+
+    
 }
