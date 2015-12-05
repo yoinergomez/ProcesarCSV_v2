@@ -50,10 +50,10 @@ public class ProcesarCSV_v2 {
                                           primero.getMat(), 
                                           primero.getNombre());
                     
-                    grupo = new Grupo(materia.getCodMateria(),
-                                          primero.getGr(), 
-                                          primero.getCupo(), 
-                                          primero.getMatri());
+                    grupo = new Grupo(materia,
+                                        primero.getGr(), 
+                                        primero.getCupo(), 
+                                        primero.getMatri());
                     grupos.add(grupo);
                     materias.add(materia);
                     ultimo=primero;

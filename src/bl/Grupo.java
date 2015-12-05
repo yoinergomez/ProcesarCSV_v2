@@ -18,14 +18,14 @@ public class Grupo {
     private int cupo;
     private int matriculados;
 
-    public Grupo(String materia, int numero, int cupo, int matriculados) {
+    public Grupo(Materia materia, int numero, int cupo, int matriculados) {
         this.numero = numero;
         this.cupo = cupo;
         this.matriculados = matriculados;
         
-        this.facultad = materia.substring(0, 2);
-        this.departamento = materia.substring(2, 4);
-        this.materia = materia.substring(4, 7);
+        this.facultad = materia.getFacultad();
+        this.departamento = materia.getDepartamento();
+        this.materia = materia.getCodigo();
     }
 
     public String getMateria() {
