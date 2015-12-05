@@ -6,10 +6,13 @@
 package procesarcsv_v2;
 
 import bl.FilaCSV;
+import bl.Grupo;
+import bl.Materia;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -24,6 +27,10 @@ public class ProcesarCSV_v2 {
         String linea;
         FilaCSV primero;
         FilaCSV ultimo;
+        Materia materia;
+        Grupo grupo;
+        ArrayList<Materia> materias = new ArrayList<>();
+        ArrayList<Grupo> grupos = new ArrayList<>();
         
         try {
             //FileReader f = new FileReader("/home/esteban/Descargas/casosCSV.csv");
@@ -38,7 +45,20 @@ public class ProcesarCSV_v2 {
                 primero = primero.ajustarCodigoMateria(primero);
                 
                 if(primero.existeMateria()){
+                    materia = new Materia(primero.getFac(), 
+                                          primero.getDep(), 
+                                          primero.getMat(), 
+                                          primero.getNombre());
+                    
+                    grupo = new Grupo(materia.getCodMateria(),
+                                          primero.getGr(), 
+                                          primero.getCupo(), 
+                                          primero.getMatri());
+                    grupos.add(grupo);
+                    materias.add(materia);
                     ultimo=primero;
+                } else {
+                    
                 }
             }
             
