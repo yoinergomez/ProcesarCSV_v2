@@ -11,8 +11,6 @@ package bl;
  */
 public class FilaCSV {
 
-    private static FilaCSV instance = null;
-    
     private String fac;
     private String dep;
     private String ide;
@@ -97,12 +95,84 @@ public class FilaCSV {
         this.dep = dep;
     }
 
+    public String getIde() {
+        return ide;
+    }
+
+    public void setIde(String ide) {
+        this.ide = ide;
+    }
+
     public String getMat() {
         return mat;
     }
 
     public void setMat(String mat) {
         this.mat = mat;
+    }
+
+    public String getGr() {
+        return gr;
+    }
+
+    public void setGr(String gr) {
+        this.gr = gr;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getCupo() {
+        return cupo;
+    }
+
+    public void setCupo(String cupo) {
+        this.cupo = cupo;
+    }
+
+    public String getMatri() {
+        return matri;
+    }
+
+    public void setMatri(String matri) {
+        this.matri = matri;
+    }
+
+    public String getBloqueAula() {
+        return bloqueAula;
+    }
+
+    public void setBloqueAula(String bloqueAula) {
+        this.bloqueAula = bloqueAula;
+    }
+
+    public String getHorario() {
+        return horario;
+    }
+
+    public void setHorario(String horario) {
+        this.horario = horario;
+    }
+
+    public String getCedula() {
+        return cedula;
+    }
+
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
+    }
+
+    public String getProfesor() {
+        return profesor;
+    }
+
+    public void setProfesor(String profesor) {
+        this.profesor = profesor;
     }
 
     
