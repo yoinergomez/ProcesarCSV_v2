@@ -111,8 +111,12 @@ public class FilaCSV {
         this.mat = mat;
     }
 
-    public String getGr() {
-        return gr;
+    public int getGr() {
+        try{
+            return Integer.parseInt(gr);
+        }catch(NumberFormatException e){
+            return 0;
+        }
     }
 
     public void setGr(String gr) {
@@ -127,16 +131,24 @@ public class FilaCSV {
         this.nombre = nombre;
     }
 
-    public String getCupo() {
-        return cupo;
+    public int getCupo() {
+        try{
+            return Integer.parseInt(cupo);
+        } catch (NumberFormatException e){
+            return 0;
+        }
     }
 
     public void setCupo(String cupo) {
         this.cupo = cupo;
     }
 
-    public String getMatri() {
-        return matri;
+    public int getMatri() {
+        try{
+            return Integer.parseInt(matri);
+        } catch (NumberFormatException e){
+            return 0;
+        }
     }
 
     public void setMatri(String matri) {
