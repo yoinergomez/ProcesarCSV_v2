@@ -12,24 +12,24 @@ package bl;
  */
 public class Materia {
     
-    private String codigo;
+    private String materia;
     private String departamento;
     private String facultad;
     private String nombre;
 
     public Materia(String facultad, String departamento, String codigo, String nombre) {
-        this.codigo = codigo;
+        this.materia = codigo;
         this.departamento = departamento;
         this.facultad = facultad;
         this.nombre = nombre;
     }
 
     public String getCodigo() {
-        return codigo;
+        return materia;
     }
 
     public void setCodigo(String codigo) {
-        this.codigo = codigo;
+        this.materia = codigo;
     }
 
     public String getDepartamento() {
@@ -55,8 +55,6 @@ public class Materia {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
-    
     
 }
 
