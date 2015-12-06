@@ -8,6 +8,8 @@ package procesarcsv_v2;
 import bl.FilaCSV;
 import bl.Grupo;
 import bl.GrupoAula;
+import bl.GrupoHorario;
+import bl.GrupoProfesor;
 import bl.Materia;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -31,9 +33,13 @@ public class ProcesarCSV_v2 {
         Materia materia;
         Grupo grupo;
         GrupoAula aula;
+        GrupoHorario horario;
+        GrupoProfesor profesor;
         ArrayList<Materia> materias = new ArrayList<>();
         ArrayList<Grupo> grupos = new ArrayList<>();
         ArrayList<GrupoAula> aulas = new ArrayList<>();
+        ArrayList<GrupoHorario> horarios = new ArrayList<>();
+        ArrayList<GrupoProfesor> profesores = new ArrayList<>();
         
         try {
             //FileReader f = new FileReader("/home/esteban/Descargas/casosCSV.csv");
@@ -52,11 +58,13 @@ public class ProcesarCSV_v2 {
                                           primero.getDep(), 
                                           primero.getMat(), 
                                           primero.getNombre());
+                    materias.add(materia);
                     
                     grupo = new Grupo(materia,
                                       primero.getGr(), 
                                       primero.getCupo(), 
                                       primero.getMatri());
+                    grupos.add(grupo);
                     
                     if (primero.existeAula()){
                         aula = new GrupoAula(grupo, primero.getBloqueAula());
@@ -64,11 +72,16 @@ public class ProcesarCSV_v2 {
                     }
                     
                     if (primero.existeHorario()){
-                    
+                        horario = new GrupoHorario(grupo, primero.getHorario());
+                        horarios.add(horario);
                     }
                     
-                    grupos.add(grupo);
-                    materias.add(materia);
+                    if (primero.existeProfesor()){
+                        profesor = new GrupoProfesor(grupo, 
+                                                    primero.getCedula(), 
+                                                    primero.getProfesor());
+                        profesores.add(profesor);
+                    }
                     
                     ultimo=primero;
                 } else {
