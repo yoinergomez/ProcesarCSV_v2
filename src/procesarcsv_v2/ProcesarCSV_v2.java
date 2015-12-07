@@ -16,6 +16,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.JOptionPane;
 
 /**
@@ -29,13 +31,13 @@ public class ProcesarCSV_v2 {
         
         String linea;
         FilaCSV primero;
-        FilaCSV ultimo;
+        FilaCSV ultimo = null;
         Materia materia;
         Grupo grupo;
         GrupoAula aula;
         GrupoHorario horario;
         GrupoProfesor profesor;
-        ArrayList<Materia> materias = new ArrayList<>();
+        Map<String, Materia> materias = new HashMap<>();
         ArrayList<Grupo> grupos = new ArrayList<>();
         ArrayList<GrupoAula> aulas = new ArrayList<>();
         ArrayList<GrupoHorario> horarios = new ArrayList<>();
@@ -58,7 +60,7 @@ public class ProcesarCSV_v2 {
                                           primero.getDep(), 
                                           primero.getMat(), 
                                           primero.getNombre());
-                    materias.add(materia);
+                    materias.put(materia.getCodMateria(), materia);
                     
                     grupo = new Grupo(materia,
                                       primero.getGr(), 
@@ -84,8 +86,34 @@ public class ProcesarCSV_v2 {
                     }
                     
                     ultimo=primero;
-                } else {
                     
+                } else {
+                    materia = new Materia(ultimo.getFac(), 
+                                          ultimo.getDep(), 
+                                          ultimo.getMat(), 
+                                          ultimo.getNombre());
+                    
+                    grupo = new Grupo(materia,
+                                      ultimo.getGr(), 
+                                      ultimo.getCupo(), 
+                                      ultimo.getMatri());
+                    
+                    if (primero.existeAula()){
+                        aula = new GrupoAula(grupo, primero.getBloqueAula());
+                        aulas.add(aula);
+                    }
+                    
+                    if (primero.existeHorario()){
+                        horario = new GrupoHorario(grupo, primero.getHorario());
+                        horarios.add(horario);
+                    }
+                    
+                    if (primero.existeProfesor()){
+                        profesor = new GrupoProfesor(grupo, 
+                                                    primero.getCedula(), 
+                                                    primero.getProfesor());
+                        profesores.add(profesor);
+                    }
                 }
             }
             
