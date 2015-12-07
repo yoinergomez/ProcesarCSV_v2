@@ -64,5 +64,8 @@ public class GrupoProfesor {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-  
+    
+    public String getCodMateria(){
+        return facultad+departamento+materia;
+    }
 }

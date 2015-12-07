@@ -55,7 +55,9 @@ public class GrupoAula {
         this.aula = aula;
     }
     
-    
+    public String getCodMateria(){
+        return facultad+departamento+materia;
+    }
     
     
 }

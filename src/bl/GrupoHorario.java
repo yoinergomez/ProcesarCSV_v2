@@ -54,5 +54,7 @@ public class GrupoHorario {
         this.horario = horario;
     }
     
-    
+    public String getCodMateria(){
+        return facultad+departamento+materia;
+    }
 }
