@@ -42,6 +42,7 @@ public class FilaCSV {
         nombre = frag[5];
         cupo = frag[6];
         matri = frag[7];
+        cedula = frag[8];
         horario = frag[9];
         bloqueAula = frag[10];
         profesor = frag[11];
