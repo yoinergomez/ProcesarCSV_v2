@@ -3,26 +3,29 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package bl;
+package model;
 
 /**
  *
  * @author esteban
  */
-public class GrupoProfesor {
+public class Grupo {
     
     private String materia;
     private String departamento;
     private String facultad;
-    private String cedula;
-    private String nombre;
+    private int numero;
+    private int cupo;
+    private int matriculados;
 
-    public GrupoProfesor(Grupo grupo, String cedula, String nombre) {
-        this.materia = grupo.getMateria();
-        this.departamento = grupo.getDepartamento();
-        this.facultad = grupo.getFacultad();
-        this.cedula = cedula;
-        this.nombre = nombre;
+    public Grupo(Materia materia, int numero, int cupo, int matriculados) {
+        this.numero = numero;
+        this.cupo = cupo;
+        this.matriculados = matriculados;
+        
+        this.facultad = materia.getFacultad();
+        this.departamento = materia.getDepartamento();
+        this.materia = materia.getCodigo();
     }
 
     public String getMateria() {
@@ -49,20 +52,28 @@ public class GrupoProfesor {
         this.facultad = facultad;
     }
 
-    public String getCedula() {
-        return cedula;
+    public int getNumero() {
+        return numero;
     }
 
-    public void setCedula(String cedula) {
-        this.cedula = cedula;
+    public void setNumero(int numero) {
+        this.numero = numero;
     }
 
-    public String getNombre() {
-        return nombre;
+    public int getCupo() {
+        return cupo;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setCupo(int cupo) {
+        this.cupo = cupo;
+    }
+
+    public int getMatriculados() {
+        return matriculados;
+    }
+
+    public void setMatriculados(int matriculados) {
+        this.matriculados = matriculados;
     }
     
     public String getCodMateria(){

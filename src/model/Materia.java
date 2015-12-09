@@ -3,31 +3,33 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package bl;
+package model;
 
 /**
- *
- * @author esteban
+ * 
+ * @author Yoiner Gómez - yoiner.gomez22@gmail.com
+ * @version 1.1
  */
-public class GrupoHorario {
+public class Materia {
+    
     private String materia;
     private String departamento;
     private String facultad;
-    private String horario;
+    private String nombre;
 
-    public GrupoHorario(Grupo grupo, String horario) {
-        this.materia = grupo.getMateria();
-        this.departamento = grupo.getDepartamento();
-        this.facultad = grupo.getFacultad();
-        this.horario = horario;
+    public Materia(String facultad, String departamento, String codigo, String nombre) {
+        this.materia = codigo;
+        this.departamento = departamento;
+        this.facultad = facultad;
+        this.nombre = nombre;
     }
 
-    public String getMateria() {
+    public String getCodigo() {
         return materia;
     }
 
-    public void setMateria(String materia) {
-        this.materia = materia;
+    public void setCodigo(String codigo) {
+        this.materia = codigo;
     }
 
     public String getDepartamento() {
@@ -46,15 +48,16 @@ public class GrupoHorario {
         this.facultad = facultad;
     }
 
-    public String getHorario() {
-        return horario;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setHorario(String horario) {
-        this.horario = horario;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
     
     public String getCodMateria(){
         return facultad+departamento+materia;
     }
 }
+

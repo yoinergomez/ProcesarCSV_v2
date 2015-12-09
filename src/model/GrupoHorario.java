@@ -3,24 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package bl;
+package model;
 
 /**
  *
  * @author esteban
  */
-public class GrupoAula {
-    
+public class GrupoHorario {
     private String materia;
     private String departamento;
     private String facultad;
-    private String aula;
+    private String horario;
 
-    public GrupoAula(Grupo grupo, String aula) {
+    public GrupoHorario(Grupo grupo, String horario) {
         this.materia = grupo.getMateria();
         this.departamento = grupo.getDepartamento();
         this.facultad = grupo.getFacultad();
-        this.aula = aula;
+        this.horario = horario;
     }
 
     public String getMateria() {
@@ -47,17 +46,15 @@ public class GrupoAula {
         this.facultad = facultad;
     }
 
-    public String getAula() {
-        return aula;
+    public String getHorario() {
+        return horario;
     }
 
-    public void setAula(String aula) {
-        this.aula = aula;
+    public void setHorario(String horario) {
+        this.horario = horario;
     }
     
     public String getCodMateria(){
         return facultad+departamento+materia;
     }
-    
-    
 }

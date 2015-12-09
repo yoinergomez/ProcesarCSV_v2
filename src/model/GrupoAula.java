@@ -3,33 +3,32 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package bl;
+package model;
 
 /**
- * 
- * @author Yoiner Gómez - yoiner.gomez22@gmail.com
- * @version 1.1
+ *
+ * @author esteban
  */
-public class Materia {
+public class GrupoAula {
     
     private String materia;
     private String departamento;
     private String facultad;
-    private String nombre;
+    private String aula;
 
-    public Materia(String facultad, String departamento, String codigo, String nombre) {
-        this.materia = codigo;
-        this.departamento = departamento;
-        this.facultad = facultad;
-        this.nombre = nombre;
+    public GrupoAula(Grupo grupo, String aula) {
+        this.materia = grupo.getMateria();
+        this.departamento = grupo.getDepartamento();
+        this.facultad = grupo.getFacultad();
+        this.aula = aula;
     }
 
-    public String getCodigo() {
+    public String getMateria() {
         return materia;
     }
 
-    public void setCodigo(String codigo) {
-        this.materia = codigo;
+    public void setMateria(String materia) {
+        this.materia = materia;
     }
 
     public String getDepartamento() {
@@ -48,16 +47,17 @@ public class Materia {
         this.facultad = facultad;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getAula() {
+        return aula;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setAula(String aula) {
+        this.aula = aula;
     }
     
     public String getCodMateria(){
         return facultad+departamento+materia;
     }
+    
+    
 }
-

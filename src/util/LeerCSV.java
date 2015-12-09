@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package procesarcsv_v2;
+package util;
 
-import bl.FilaCSV;
-import bl.Grupo;
-import bl.GrupoAula;
-import bl.GrupoHorario;
-import bl.GrupoProfesor;
-import bl.Materia;
+import model.FilaCSV;
+import model.Grupo;
+import model.GrupoAula;
+import model.GrupoHorario;
+import model.GrupoProfesor;
+import model.Materia;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -29,7 +29,7 @@ import javax.swing.JOptionPane;
  *
  * @author esteban
  */
-public class ProcesarCSV_v2 {
+public class LeerCSV {
     
     Map<String, Materia> materias = new HashMap<>();
     ArrayList<Grupo> grupos = new ArrayList<>();
@@ -38,7 +38,7 @@ public class ProcesarCSV_v2 {
     ArrayList<GrupoProfesor> profesores = new ArrayList<>();
     private StringBuilder sql = new StringBuilder();
     
-    public void procesarlinea(){
+    public void fragmentarLinea(){
         
         String linea;
         FilaCSV primero;
@@ -48,7 +48,6 @@ public class ProcesarCSV_v2 {
         GrupoAula aula;
         GrupoHorario horario;
         GrupoProfesor profesor;
-        //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@     AQUI ESTABAN TODOS LOS ATRIBUTOS DE LA CLASE
         
         try {
             FileReader f = new FileReader("/home/esteban/Descargas/casosCSV.csv");
@@ -224,8 +223,8 @@ public class ProcesarCSV_v2 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        ProcesarCSV_v2 run = new ProcesarCSV_v2();
-        run.procesarlinea();
+        LeerCSV run = new LeerCSV();
+        run.fragmentarLinea();
         run.mostrarMaterias();
         run.mostrarGrupos();
         run.mostrarGrupoAula();
