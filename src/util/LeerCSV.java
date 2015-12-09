@@ -138,100 +138,48 @@ public class LeerCSV {
             String mnj = "La primera línea no contiene un curso válido";
             JOptionPane.showMessageDialog(null, mnj+"\n"+ex , "Error",
             JOptionPane.WARNING_MESSAGE);
-        } 
-        
+        }   
+    }    
+
+    public Map<String, Materia> getMaterias() {
+        return materias;
     }
-   
-    public void mostrarMaterias(){
+
+    public ArrayList<Grupo> getGrupos() {
+        return grupos;
+    }
+
+    public ArrayList<GrupoAula> getAulas() {
+        return aulas;
+    }
+
+    public ArrayList<GrupoHorario> getHorarios() {
+        return horarios;
+    }
+
+    public ArrayList<GrupoProfesor> getProfesores() {
+        return profesores;
+    }
+    
+    
+    
+        public void generarMaterias(Map<String, Materia> materias){
+        
+        final String insert = "INSERT INTO Materia "
+                + "(`codigo`,`departamento`, `facultad`, `nombre`) VALUES(";
+        
         System.out.println(materias.size());
         sql.append("Materias "+materias.size()+"\n");
         Iterator it = materias.keySet().iterator();
         while(it.hasNext()){
             String key = (String) it.next();
             System.out.println(key + "\t" + materias.get(key).getNombre());
-            sql.append(key).append("\t").append(materias.get(key).getNombre()+"\n");
+            sql.append(insert);
+            sql.append(materias.get(key).getCodigo()).append(", ");
+            sql.append(materias.get(key).getDepartamento()).append(", ");
+            sql.append(materias.get(key).getFacultad()).append(", ");
+            sql.append("'").append(materias.get(key).getNombre()).append("');");
+            sql.append("\n");
         }
     }
-    
-    public void mostrarGrupos(){
-        System.out.println(grupos.size());
-        sql.append("Grupos "+grupos.size()+"\n");
-        for (int i = 0; i < grupos.size(); i++) {
-            System.out.println(grupos.get(i).getCodMateria()+
-                    "\t"+grupos.get(i).getNumero()+
-                    "\t"+grupos.get(i).getCupo()+
-                    "\t"+grupos.get(i).getMatriculados());
-            sql.append(grupos.get(i).getCodMateria()+
-                    "\t"+grupos.get(i).getNumero()+
-                    "\t"+grupos.get(i).getCupo()+
-                    "\t"+grupos.get(i).getMatriculados()+"\n");
-        }
-    }
-    
-    public void mostrarGrupoAula(){
-        System.out.println(aulas.size());
-        sql.append("GruposAulas "+aulas.size()+"\n");
-        for (int i = 0; i < aulas.size(); i++) {
-            System.out.println(aulas.get(i).getCodMateria()+
-                    "\t"+aulas.get(i).getAula());
-            sql.append(aulas.get(i).getCodMateria()+
-                    "\t"+aulas.get(i).getAula()+"\n");
-        }
-    }
-    
-    public void mostrarGrupoHorario(){
-        System.out.println(horarios.size());
-        sql.append("GruposHorarios "+horarios.size()+"\n");
-        for (int i = 0; i < horarios.size(); i++) {
-            System.out.println(horarios.get(i).getCodMateria()+
-                    "\t"+horarios.get(i).getHorario());
-            sql.append(horarios.get(i).getCodMateria()+
-                    "\t"+horarios.get(i).getHorario()+"\n");
-        }
-    }
-    
-    public void mostrarGrupoProfesor(){
-        System.out.println(profesores.size());
-        sql.append("GruposProfesores "+profesores.size()+"\n");
-        for (int i = 0; i < profesores.size(); i++) {
-            System.out.println(profesores.get(i).getCodMateria()+
-                    "\t"+profesores.get(i).getCedula()+
-                    "\t"+profesores.get(i).getNombre());
-            sql.append(profesores.get(i).getCodMateria()+
-                    "\t"+profesores.get(i).getCedula()+
-                    "\t"+profesores.get(i).getNombre()+"\n");
-        }
-    }
-    
-    public void generarSQL() {
-        String directorio = System.getProperty("user.dir") + "/PROGRAMACION.sql";
-        File file = new File(directorio);
-        try {
-            FileWriter w = new FileWriter(file);
-            BufferedWriter bw = new BufferedWriter(w);
-            PrintWriter wr = new PrintWriter(bw);
-            wr.write(sql.toString());//Escribir en el archivo
-            wr.close();
-            bw.close();
-        } catch (IOException e) {
-            String mnj = "Error al crear el archivo SQL";
-            JOptionPane.showMessageDialog(null, mnj+"\n"+e , "Error",
-            JOptionPane.WARNING_MESSAGE);
-        }
-    }
-    
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        LeerCSV run = new LeerCSV();
-        run.fragmentarLinea();
-        run.mostrarMaterias();
-        run.mostrarGrupos();
-        run.mostrarGrupoAula();
-        run.mostrarGrupoHorario();
-        run.mostrarGrupoProfesor();
-        run.generarSQL();
-    }
-    
 }
