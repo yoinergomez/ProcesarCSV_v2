@@ -63,3 +63,63 @@ CREATE TABLE IF NOT EXISTS `GrupoProfesor` (
   FOREIGN KEY (`cedula`)
       REFERENCES Profesor(`cedula`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `Aula`
+--
+
+CREATE TABLE IF NOT EXISTS `Aula` (
+  `aula` varchar(10) NOT NULL,
+  PRIMARY KEY (`aula`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `GrupoAula`
+--
+
+CREATE TABLE IF NOT EXISTS `GrupoAula` (
+  `codigo` smallint(3) unsigned NOT NULL,
+  `departamento` smallint(2) unsigned NOT NULL,
+  `facultad` smallint(2) unsigned NOT NULL,
+  `numero` smallint(3) unsigned NOT NULL,
+  `aula` varchar(10) NOT NULL,
+  PRIMARY KEY (`codigo`,`departamento`, `facultad`, `numero`, `aula`),
+  FOREIGN KEY (`codigo`,`departamento`, `facultad`, `numero`)
+      REFERENCES Grupo(`codigo`,`departamento`, `facultad`, `numero`),
+  FOREIGN KEY (`aula`)
+      REFERENCES Aula(`aula`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `Horario`
+--
+
+CREATE TABLE IF NOT EXISTS `Horario` (
+  `horario` varchar(20) NOT NULL,
+  PRIMARY KEY (`aula`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `GrupoHorario`
+--
+
+CREATE TABLE IF NOT EXISTS `GrupoHorario` (
+  `codigo` smallint(3) unsigned NOT NULL,
+  `departamento` smallint(2) unsigned NOT NULL,
+  `facultad` smallint(2) unsigned NOT NULL,
+  `numero` smallint(3) unsigned NOT NULL,
+  `horario` varchar(20) NOT NULL,
+  PRIMARY KEY (`codigo`,`departamento`, `facultad`, `numero`, `horario`),
+  FOREIGN KEY (`codigo`,`departamento`, `facultad`, `numero`)
+      REFERENCES Grupo(`codigo`,`departamento`, `facultad`, `numero`),
+  FOREIGN KEY (`horario`)
+      REFERENCES Horario(`horario`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
