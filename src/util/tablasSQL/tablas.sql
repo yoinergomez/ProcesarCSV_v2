@@ -102,7 +102,7 @@ CREATE TABLE IF NOT EXISTS `GrupoAula` (
 
 CREATE TABLE IF NOT EXISTS `Horario` (
   `horario` varchar(20) NOT NULL,
-  PRIMARY KEY (`aula`)
+  PRIMARY KEY (`horario`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------

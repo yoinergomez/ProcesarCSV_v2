@@ -214,9 +214,10 @@ public class LeerCSV {
             wr.close();
             bw.close();
         } catch (IOException e) {
-
-        };
-
+            String mnj = "Error al crear el archivo SQL";
+            JOptionPane.showMessageDialog(null, mnj+"\n"+e , "Error",
+            JOptionPane.WARNING_MESSAGE);
+        }
     }
     
     /**
