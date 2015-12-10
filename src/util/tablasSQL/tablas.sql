@@ -123,3 +123,5 @@ CREATE TABLE IF NOT EXISTS `GrupoHorario` (
   FOREIGN KEY (`horario`)
       REFERENCES Horario(`horario`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+
