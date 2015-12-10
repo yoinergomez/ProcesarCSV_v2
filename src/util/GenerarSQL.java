@@ -23,56 +23,75 @@ import model.Materia;
  * @author esteban
  */
 public class GenerarSQL {
-    
+
     private StringBuilder sql;
-    
+
     public GenerarSQL() {
         sql = new StringBuilder();
         sql = crearTablas();
     }
-     
+
     /**
-     * Lee un archivo SQL que contiene las sentencias necesarias
-     * para la creación de las tablas de la base de datos.
-     * 
-     * @throws NullPointerException  
-     * Verificar que el archivo tablas.sql se encuentre en el directorio
-     * util/tablasSQL/tablas.sql de lo contrario cambiar el path
-     * donde se encentre alojado
-     * 
-     * @throws BufferedReader
-     * Cerrar el canal de comunicaciones que se crea
-     * para proceder con la lectura del archivo
-     * 
+     * Lee un archivo SQL que contiene las sentencias necesarias para la
+     * creación de las tablas de la base de datos.
+     *
+     * @throws NullPointerException Verificar que el archivo tablas.sql se
+     * encuentre en el directorio util/tablasSQL/tablas.sql de lo contrario
+     * cambiar el path donde se encentre alojado
+     *
+     * @throws BufferedReader Cerrar el canal de comunicaciones que se crea para
+     * proceder con la lectura del archivo
+     *
      */
     public StringBuilder crearTablas() {
         String linea;
 
         try {
-        InputStream is = this.getClass()
-                  .getClassLoader().getResourceAsStream("util/tablasSQL/tablas.sql") ;
-        InputStreamReader isr = new InputStreamReader(is);
-        BufferedReader br = new BufferedReader(isr);
-        
-        //Lectura por líneas
-        while ((linea = br.readLine()) != null) {
-            sql.append(linea).append("\n");
-        }
-        
-        //Cerrando la comunicación
-        br.close();
-        isr.close();
-        is.close();
-        }catch(Exception e){
+            InputStream is = this.getClass()
+                    .getClassLoader().getResourceAsStream("util/tablasSQL/tablas.sql");
+            InputStreamReader isr = new InputStreamReader(is);
+            BufferedReader br = new BufferedReader(isr);
+
+            //Lectura por líneas
+            while ((linea = br.readLine()) != null) {
+                sql.append(linea).append("\n");
+            }
+
+            //Cerrando la comunicación
+            br.close();
+            isr.close();
+            is.close();
+        } catch (Exception e) {
             String mnj = "Error al crear las tablas del archivo tablas.sql";
-            JOptionPane.showMessageDialog(null, mnj+"\n"+e , "Error",
-            JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, mnj + "\n" + e, "Error",
+                    JOptionPane.WARNING_MESSAGE);
         }
         return sql;
     }
-    
 
-    
+    public void generarMaterias(Map<String, Materia> materias) {
+
+        final String insert = "INSERT INTO Materia "
+                + "(`codigo`,`departamento`, `facultad`, `nombre`) VALUES\n";
+
+        System.out.println(materias.size());
+        sql.append("Materias " + materias.size() + "\n");
+        Iterator it = materias.keySet().iterator();
+        sql.append(insert);
+        while (it.hasNext()) {
+            String key = (String) it.next();
+            System.out.println(key + "\t" + materias.get(key).getNombre());
+            System.out.println(key);
+            sql.append("(").append(materias.get(key).getCodigo()).append(", ");
+            sql.append(materias.get(key).getDepartamento()).append(", ");
+            sql.append(materias.get(key).getFacultad()).append(", ");
+            sql.append("'").append(materias.get(key).getNombre()).append("'),");
+            sql.append("\n");
+        }
+        sql.replace(sql.length() - 2, sql.length(), ";\n");
+        System.out.println(sql.toString());
+    }
+
 //    public void mostrarGrupos(){
 //        System.out.println(grupos.size());
 //        sql.append("Grupos "+grupos.size()+"\n");
@@ -122,7 +141,6 @@ public class GenerarSQL {
 //                    "\t"+profesores.get(i).getNombre()+"\n");
 //        }
 //    }
-    
     public void CrearArchivoSQL() {
         String directorio = System.getProperty("user.dir") + "/PROGRAMACION.sql";
         File file = new File(directorio);
@@ -135,8 +153,8 @@ public class GenerarSQL {
             bw.close();
         } catch (IOException e) {
             String mnj = "Error al crear el archivo SQL";
-            JOptionPane.showMessageDialog(null, mnj+"\n"+e , "Error",
-            JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, mnj + "\n" + e, "Error",
+                    JOptionPane.WARNING_MESSAGE);
         }
     }
 }

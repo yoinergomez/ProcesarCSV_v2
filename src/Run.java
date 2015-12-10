@@ -22,8 +22,9 @@ public class Run {
         
         leer.fragmentarLinea();
         
-        leer.generarMaterias(leer.getMaterias());
+        
         /*
+        leer.generarMaterias(leer.getMaterias());
         leer.mostrarGrupos();
         leer.mostrarGrupoAula();
         leer.mostrarGrupoHorario();

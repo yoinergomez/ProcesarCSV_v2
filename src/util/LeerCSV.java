@@ -182,6 +182,7 @@ public class LeerCSV {
             sql.append("'").append(materias.get(key).getNombre()).append("'),");
             sql.append("\n");
         }
-            System.out.println(sql.toString());
+        sql.replace(sql.length()-2, sql.length(), ";\n");
+        System.out.println(sql.toString());
     }
 }
