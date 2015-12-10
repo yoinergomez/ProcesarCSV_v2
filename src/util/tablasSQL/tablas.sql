@@ -26,8 +26,8 @@ CREATE TABLE IF NOT EXISTS `Grupo` (
   `departamento` TINYINT(2) UNSIGNED ZEROFILL NOT NULL,
   `facultad` TINYINT(2) UNSIGNED ZEROFILL NOT NULL,
   `numero` SMALLINT(3) UNSIGNED ZEROFILL NOT NULL,
-  `cupo` smallint(3) unsigned DEFAULT NULL,
-  `matriculados` smallint(3) unsigned DEFAULT NULL,
+  `cupo` SMALLINT(3) unsigned DEFAULT NULL,
+  `matriculados` SMALLINT(3) unsigned DEFAULT NULL,
   PRIMARY KEY (`codigo`,`departamento`, `facultad`, `numero`),
   FOREIGN KEY (`codigo`,`departamento`, `facultad`)
       REFERENCES Materia(`codigo`,`departamento`, `facultad`)
