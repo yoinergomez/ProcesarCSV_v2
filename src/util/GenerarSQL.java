@@ -49,7 +49,8 @@ public class GenerarSQL {
         String linea;
 
         try {
-        InputStream is = this.getClass().getResourceAsStream("util/tablasSQL/tablas.sql") ;
+        InputStream is = this.getClass()
+                  .getClassLoader().getResourceAsStream("util/tablasSQL/tablas.sql") ;
         InputStreamReader isr = new InputStreamReader(is);
         BufferedReader br = new BufferedReader(isr);
         

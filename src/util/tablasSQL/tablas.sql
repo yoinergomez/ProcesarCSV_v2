@@ -8,9 +8,9 @@
 --
 
 CREATE TABLE IF NOT EXISTS `Materia` (
-  `codigo` smallint(3) unsigned NOT NULL,
-  `departamento` smallint(2) unsigned NOT NULL,
-  `facultad` smallint(2) unsigned NOT NULL,
+  `codigo` varchar(3) NOT NULL,
+  `departamento` varchar(2) NOT NULL,
+  `facultad` varchar(2) NOT NULL,
   `nombre` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`codigo`,`departamento`, `facultad`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -22,10 +22,10 @@ CREATE TABLE IF NOT EXISTS `Materia` (
 --
 
 CREATE TABLE IF NOT EXISTS `Grupo` (
-  `codigo` smallint(3) unsigned NOT NULL,
-  `departamento` smallint(2) unsigned NOT NULL,
-  `facultad` smallint(2) unsigned NOT NULL,
-  `numero` smallint(3) unsigned NOT NULL,
+  `codigo` varchar(3) NOT NULL,
+  `departamento` varchar(2) NOT NULL,
+  `facultad` varchar(2) NOT NULL,
+  `numero` varchar(3) NOT NULL,
   `cupo` smallint(3) unsigned DEFAULT NULL,
   `matriculados` smallint(3) unsigned DEFAULT NULL,
   PRIMARY KEY (`codigo`,`departamento`, `facultad`, `numero`),
@@ -52,10 +52,10 @@ CREATE TABLE IF NOT EXISTS `Profesor` (
 --
 
 CREATE TABLE IF NOT EXISTS `GrupoProfesor` (
-  `codigo` smallint(3) unsigned NOT NULL,
-  `departamento` smallint(2) unsigned NOT NULL,
-  `facultad` smallint(2) unsigned NOT NULL,
-  `numero` smallint(3) unsigned NOT NULL,
+  `codigo` varchar(3) NOT NULL,
+  `departamento` varchar(2) NOT NULL,
+  `facultad` varchar(2) NOT NULL,
+  `numero` varchar(3) NOT NULL,
   `cedula` int(11) NOT NULL,
   PRIMARY KEY (`codigo`,`departamento`, `facultad`, `numero`, `cedula`),
   FOREIGN KEY (`codigo`,`departamento`, `facultad`, `numero`)
@@ -82,10 +82,10 @@ CREATE TABLE IF NOT EXISTS `Aula` (
 --
 
 CREATE TABLE IF NOT EXISTS `GrupoAula` (
-  `codigo` smallint(3) unsigned NOT NULL,
-  `departamento` smallint(2) unsigned NOT NULL,
-  `facultad` smallint(2) unsigned NOT NULL,
-  `numero` smallint(3) unsigned NOT NULL,
+  `codigo` varchar(3) NOT NULL,
+  `departamento` varchar(2) NOT NULL,
+  `facultad` varchar(2) NOT NULL,
+  `numero` varchar(3) NOT NULL,
   `aula` varchar(10) NOT NULL,
   PRIMARY KEY (`codigo`,`departamento`, `facultad`, `numero`, `aula`),
   FOREIGN KEY (`codigo`,`departamento`, `facultad`, `numero`)
@@ -112,10 +112,10 @@ CREATE TABLE IF NOT EXISTS `Horario` (
 --
 
 CREATE TABLE IF NOT EXISTS `GrupoHorario` (
-  `codigo` smallint(3) unsigned NOT NULL,
-  `departamento` smallint(2) unsigned NOT NULL,
-  `facultad` smallint(2) unsigned NOT NULL,
-  `numero` smallint(3) unsigned NOT NULL,
+  `codigo` varchar(3) NOT NULL,
+  `departamento` varchar(2) NOT NULL,
+  `facultad` varchar(2) NOT NULL,
+  `numero` varchar(3) NOT NULL,
   `horario` varchar(20) NOT NULL,
   PRIMARY KEY (`codigo`,`departamento`, `facultad`, `numero`, `horario`),
   FOREIGN KEY (`codigo`,`departamento`, `facultad`, `numero`)
