@@ -56,10 +56,17 @@ public class GrupoAula {
     public void setAula(String aula) {
         this.aula = aula;
     }
+
+    public int getNumero() {
+        return numero;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
     
     public String getCodMateria(){
         return facultad+departamento+materia;
     }
-    
-    
+
 }
