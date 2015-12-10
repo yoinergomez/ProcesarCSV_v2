@@ -14,12 +14,14 @@ public class GrupoAula {
     private String materia;
     private String departamento;
     private String facultad;
+    private int numero;
     private String aula;
 
     public GrupoAula(Grupo grupo, String aula) {
         this.materia = grupo.getMateria();
         this.departamento = grupo.getDepartamento();
         this.facultad = grupo.getFacultad();
+        this.numero = grupo.getNumero();
         this.aula = aula;
     }
 
