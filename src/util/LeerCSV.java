@@ -31,11 +31,11 @@ import javax.swing.JOptionPane;
  */
 public class LeerCSV {
     
-    Map<String, Materia> materias = new HashMap<>();
-    ArrayList<Grupo> grupos = new ArrayList<>();
-    ArrayList<GrupoAula> aulas = new ArrayList<>();
-    ArrayList<GrupoHorario> horarios = new ArrayList<>();
-    ArrayList<GrupoProfesor> profesores = new ArrayList<>();
+    private Map<String, Materia> materias = new HashMap<>();
+    private ArrayList<Grupo> grupos = new ArrayList<>();
+    private ArrayList<GrupoAula> grupAulas = new ArrayList<>();
+    private ArrayList<GrupoHorario> horarios = new ArrayList<>();
+    private ArrayList<GrupoProfesor> profesores = new ArrayList<>();
     private StringBuilder sql = new StringBuilder();
     
     public void fragmentarLinea(){
@@ -76,7 +76,7 @@ public class LeerCSV {
                     
                     if (primero.existeAula()){
                         aula = new GrupoAula(grupo, primero.getBloqueAula());
-                        aulas.add(aula);
+                        grupAulas.add(aula);
                     }
                     
                     if (primero.existeHorario()){
@@ -106,7 +106,7 @@ public class LeerCSV {
                     
                     if (primero.existeAula()){
                         aula = new GrupoAula(grupo, primero.getBloqueAula());
-                        aulas.add(aula);
+                        grupAulas.add(aula);
                     }
                     
                     if (primero.existeHorario()){
@@ -150,7 +150,7 @@ public class LeerCSV {
     }
 
     public ArrayList<GrupoAula> getAulas() {
-        return aulas;
+        return grupAulas;
     }
 
     public ArrayList<GrupoHorario> getHorarios() {

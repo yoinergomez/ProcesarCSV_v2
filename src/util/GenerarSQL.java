@@ -18,6 +18,7 @@ import java.util.Iterator;
 import java.util.Map;
 import javax.swing.JOptionPane;
 import model.Grupo;
+import model.GrupoAula;
 import model.Materia;
 
 /**
@@ -97,7 +98,7 @@ public class GenerarSQL {
                 + "(`codigo`,`departamento`, `facultad`, `numero`, "
                 + "`cupo`, `matriculados`) VALUES\n";
         
-        System.out.println("Grupos encontradas: " + grupos.size() + "\n");
+        System.out.println("Grupos encontrados: " + grupos.size() + "\n");
         sql.append(insert);
         for (int i = 0; i < grupos.size(); i++) {
             sql.append("(").append(grupos.get(i).getMateria()).append(", ");
@@ -111,17 +112,24 @@ public class GenerarSQL {
         System.out.println(sql.toString());
     }
     
-//    public void mostrarGrupoAula(){
-//        System.out.println(aulas.size());
-//        sql.append("GruposAulas "+aulas.size()+"\n");
-//        for (int i = 0; i < aulas.size(); i++) {
-//            System.out.println(aulas.get(i).getCodMateria()+
-//                    "\t"+aulas.get(i).getAula());
-//            sql.append(aulas.get(i).getCodMateria()+
-//                    "\t"+aulas.get(i).getAula()+"\n");
-//        }
-//    }
-//    
+    public void generarGrupoAula(ArrayList<GrupoAula> grupAulas){
+        final String insert = "INSERT INTO GrupoAula "
+                + "(`codigo`,`departamento`, `facultad`, `numero`, "
+                + "`aula`) VALUES\n";
+        
+        System.out.println("GrupoAula encontrados: " + grupAulas.size() + "\n");
+        sql.append(insert);
+        for (int i = 0; i < grupAulas.size(); i++) {
+            sql.append("(").append(grupAulas.get(i).getMateria()).append(", ");
+            sql.append(grupAulas.get(i).getDepartamento()).append(", ");
+            sql.append(grupAulas.get(i).getFacultad()).append(", ");
+            sql.append(grupAulas.get(i).getNumero()).append(", ");
+            sql.append("'").append(grupAulas.get(i).getAula()).append("'),\n");
+        }
+        sql.replace(sql.length() - 2, sql.length(), ";\n\n");
+        System.out.println(sql.toString());
+    }
+    
 //    public void mostrarGrupoHorario(){
 //        System.out.println(horarios.size());
 //        sql.append("GruposHorarios "+horarios.size()+"\n");
@@ -145,7 +153,7 @@ public class GenerarSQL {
 //                    "\t"+profesores.get(i).getNombre()+"\n");
 //        }
 //    }
-    public void CrearArchivoSQL() {
+    public void crearArchivoSQL() {
         String directorio = System.getProperty("user.dir") + "/PROGRAMACION.sql";
         File file = new File(directorio);
         try {
