@@ -13,9 +13,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
 import javax.swing.JOptionPane;
+import model.Grupo;
 import model.Materia;
 
 /**
@@ -68,45 +70,47 @@ public class GenerarSQL {
         }
         return sql;
     }
-
+    
+    
     public void generarMaterias(Map<String, Materia> materias) {
 
         final String insert = "INSERT INTO Materia "
                 + "(`codigo`,`departamento`, `facultad`, `nombre`) VALUES\n";
 
-        System.out.println(materias.size());
-        sql.append("Materias " + materias.size() + "\n");
+        System.out.println("Materias encontradas: " + materias.size() + "\n");
         Iterator it = materias.keySet().iterator();
         sql.append(insert);
         while (it.hasNext()) {
             String key = (String) it.next();
-            System.out.println(key + "\t" + materias.get(key).getNombre());
-            System.out.println(key);
             sql.append("(").append(materias.get(key).getCodigo()).append(", ");
             sql.append(materias.get(key).getDepartamento()).append(", ");
             sql.append(materias.get(key).getFacultad()).append(", ");
             sql.append("'").append(materias.get(key).getNombre()).append("'),");
             sql.append("\n");
         }
-        sql.replace(sql.length() - 2, sql.length(), ";\n");
-        System.out.println(sql.toString());
+        sql.replace(sql.length() - 2, sql.length(), ";\n\n");
     }
 
-//    public void mostrarGrupos(){
-//        System.out.println(grupos.size());
-//        sql.append("Grupos "+grupos.size()+"\n");
-//        for (int i = 0; i < grupos.size(); i++) {
-//            System.out.println(grupos.get(i).getCodMateria()+
-//                    "\t"+grupos.get(i).getNumero()+
-//                    "\t"+grupos.get(i).getCupo()+
-//                    "\t"+grupos.get(i).getMatriculados());
-//            sql.append(grupos.get(i).getCodMateria()+
-//                    "\t"+grupos.get(i).getNumero()+
-//                    "\t"+grupos.get(i).getCupo()+
-//                    "\t"+grupos.get(i).getMatriculados()+"\n");
-//        }
-//    }
-//    
+    public void generarGrupos(ArrayList<Grupo> grupos){
+        
+        final String insert = "INSERT INTO Grupo "
+                + "(`codigo`,`departamento`, `facultad`, `numero`, "
+                + "`cupo`, `matriculados`) VALUES\n";
+        
+        System.out.println("Grupos encontradas: " + grupos.size() + "\n");
+        sql.append(insert);
+        for (int i = 0; i < grupos.size(); i++) {
+            sql.append("(").append(grupos.get(i).getMateria()).append(", ");
+            sql.append(grupos.get(i).getDepartamento()).append(", ");
+            sql.append(grupos.get(i).getFacultad()).append(", ");
+            sql.append(grupos.get(i).getNumero()).append(", ");
+            sql.append(grupos.get(i).getCupo()).append(", ");
+            sql.append(grupos.get(i).getMatriculados()).append("),\n");
+        }
+        sql.replace(sql.length() - 2, sql.length(), ";\n\n");
+        System.out.println(sql.toString());
+    }
+    
 //    public void mostrarGrupoAula(){
 //        System.out.println(aulas.size());
 //        sql.append("GruposAulas "+aulas.size()+"\n");

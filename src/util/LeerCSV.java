@@ -160,29 +160,4 @@ public class LeerCSV {
     public ArrayList<GrupoProfesor> getProfesores() {
         return profesores;
     }
-    
-    
-    
-        public void generarMaterias(Map<String, Materia> materias){
-        
-        final String insert = "INSERT INTO Materia "
-                + "(`codigo`,`departamento`, `facultad`, `nombre`) VALUES\n";
-        
-        System.out.println(materias.size());
-        sql.append("Materias "+materias.size()+"\n");
-        Iterator it = materias.keySet().iterator();
-        sql.append(insert);
-        while(it.hasNext()){
-            String key = (String) it.next();
-            System.out.println(key + "\t" + materias.get(key).getNombre());
-            System.out.println(key);
-            sql.append("(").append(materias.get(key).getCodigo()).append(", ");
-            sql.append(materias.get(key).getDepartamento()).append(", ");
-            sql.append(materias.get(key).getFacultad()).append(", ");
-            sql.append("'").append(materias.get(key).getNombre()).append("'),");
-            sql.append("\n");
-        }
-        sql.replace(sql.length()-2, sql.length(), ";\n");
-        System.out.println(sql.toString());
-    }
 }

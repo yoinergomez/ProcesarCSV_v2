@@ -21,11 +21,11 @@ public class Run {
         GenerarSQL generar = new GenerarSQL();
         
         leer.fragmentarLinea();
-        
-        
+        generar.generarMaterias(leer.getMaterias());
+        generar.generarGrupos(leer.getGrupos());
         /*
-        leer.generarMaterias(leer.getMaterias());
-        leer.mostrarGrupos();
+        
+        
         leer.mostrarGrupoAula();
         leer.mostrarGrupoHorario();
         leer.mostrarGrupoProfesor();
