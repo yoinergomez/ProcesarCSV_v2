@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS `Grupo` (
   `codigo` SMALLINT(3) UNSIGNED ZEROFILL NOT NULL,
   `departamento` TINYINT(2) UNSIGNED ZEROFILL NOT NULL,
   `facultad` TINYINT(2) UNSIGNED ZEROFILL NOT NULL,
-  `numero` SMALLINT(3) UNSIGNED ZEROFILL NOT NULL,
+  `numero` SMALLINT(3) UNSIGNED NOT NULL,
   `cupo` SMALLINT(3) unsigned DEFAULT NULL,
   `matriculados` SMALLINT(3) unsigned DEFAULT NULL,
   PRIMARY KEY (`codigo`,`departamento`, `facultad`, `numero`),
@@ -55,7 +55,7 @@ CREATE TABLE IF NOT EXISTS `GrupoProfesor` (
   `codigo` SMALLINT(3) UNSIGNED ZEROFILL NOT NULL,
   `departamento` TINYINT(2) UNSIGNED ZEROFILL NOT NULL,
   `facultad` TINYINT(2) UNSIGNED ZEROFILL NOT NULL,
-  `numero` SMALLINT(3) UNSIGNED ZEROFILL NOT NULL,
+  `numero` SMALLINT(3) UNSIGNED NOT NULL,
   `cedula` int(11) NOT NULL,
   PRIMARY KEY (`codigo`,`departamento`, `facultad`, `numero`, `cedula`),
   FOREIGN KEY (`codigo`,`departamento`, `facultad`, `numero`)
@@ -85,7 +85,7 @@ CREATE TABLE IF NOT EXISTS `GrupoAula` (
   `codigo` SMALLINT(3) UNSIGNED ZEROFILL NOT NULL,
   `departamento` TINYINT(2) UNSIGNED ZEROFILL NOT NULL,
   `facultad` TINYINT(2) UNSIGNED ZEROFILL NOT NULL,
-  `numero` SMALLINT(3) UNSIGNED ZEROFILL NOT NULL,
+  `numero` SMALLINT(3) UNSIGNED NOT NULL,
   `aula` VARCHAR(10) NOT NULL,
   PRIMARY KEY (`codigo`,`departamento`, `facultad`, `numero`, `aula`),
   FOREIGN KEY (`codigo`,`departamento`, `facultad`, `numero`)
@@ -115,7 +115,7 @@ CREATE TABLE IF NOT EXISTS `GrupoHorario` (
   `codigo` SMALLINT(3) UNSIGNED ZEROFILL NOT NULL,
   `departamento` TINYINT(2) UNSIGNED ZEROFILL NOT NULL,
   `facultad` TINYINT(2) UNSIGNED ZEROFILL NOT NULL,
-  `numero` SMALLINT(3) UNSIGNED ZEROFILL NOT NULL,
+  `numero` SMALLINT(3) UNSIGNED NOT NULL,
   `horario` VARCHAR(20) NOT NULL,
   PRIMARY KEY (`codigo`,`departamento`, `facultad`, `numero`, `horario`),
   FOREIGN KEY (`codigo`,`departamento`, `facultad`, `numero`)
