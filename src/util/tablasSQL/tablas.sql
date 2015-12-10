@@ -8,10 +8,10 @@
 --
 
 CREATE TABLE IF NOT EXISTS `Materia` (
-  `codigo` varchar(3) NOT NULL,
-  `departamento` varchar(2) NOT NULL,
-  `facultad` varchar(2) NOT NULL,
-  `nombre` varchar(50) DEFAULT NULL,
+  `codigo` SMALLINT(3) UNSIGNED ZEROFILL NOT NULL,
+  `departamento` TINYINT(2) UNSIGNED ZEROFILL NOT NULL,
+  `facultad` TINYINT(2) UNSIGNED ZEROFILL NOT NULL,
+  `nombre` VARCHAR(50) DEFAULT NULL,
   PRIMARY KEY (`codigo`,`departamento`, `facultad`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -22,10 +22,10 @@ CREATE TABLE IF NOT EXISTS `Materia` (
 --
 
 CREATE TABLE IF NOT EXISTS `Grupo` (
-  `codigo` varchar(3) NOT NULL,
-  `departamento` varchar(2) NOT NULL,
-  `facultad` varchar(2) NOT NULL,
-  `numero` varchar(3) NOT NULL,
+  `codigo` SMALLINT(3) UNSIGNED ZEROFILL NOT NULL,
+  `departamento` TINYINT(2) UNSIGNED ZEROFILL NOT NULL,
+  `facultad` TINYINT(2) UNSIGNED ZEROFILL NOT NULL,
+  `numero` SMALLINT(3) UNSIGNED ZEROFILL NOT NULL,
   `cupo` smallint(3) unsigned DEFAULT NULL,
   `matriculados` smallint(3) unsigned DEFAULT NULL,
   PRIMARY KEY (`codigo`,`departamento`, `facultad`, `numero`),
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `Grupo` (
 
 CREATE TABLE IF NOT EXISTS `Profesor` (
   `cedula` int(11) NOT NULL,
-  `nombre` varchar(50) NOT NULL,
+  `nombre` VARCHAR(50) NOT NULL,
   PRIMARY KEY (`cedula`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -52,10 +52,10 @@ CREATE TABLE IF NOT EXISTS `Profesor` (
 --
 
 CREATE TABLE IF NOT EXISTS `GrupoProfesor` (
-  `codigo` varchar(3) NOT NULL,
-  `departamento` varchar(2) NOT NULL,
-  `facultad` varchar(2) NOT NULL,
-  `numero` varchar(3) NOT NULL,
+  `codigo` SMALLINT(3) UNSIGNED ZEROFILL NOT NULL,
+  `departamento` TINYINT(2) UNSIGNED ZEROFILL NOT NULL,
+  `facultad` TINYINT(2) UNSIGNED ZEROFILL NOT NULL,
+  `numero` SMALLINT(3) UNSIGNED ZEROFILL NOT NULL,
   `cedula` int(11) NOT NULL,
   PRIMARY KEY (`codigo`,`departamento`, `facultad`, `numero`, `cedula`),
   FOREIGN KEY (`codigo`,`departamento`, `facultad`, `numero`)
@@ -71,7 +71,7 @@ CREATE TABLE IF NOT EXISTS `GrupoProfesor` (
 --
 
 CREATE TABLE IF NOT EXISTS `Aula` (
-  `aula` varchar(10) NOT NULL,
+  `aula` VARCHAR(10) NOT NULL,
   PRIMARY KEY (`aula`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -82,11 +82,11 @@ CREATE TABLE IF NOT EXISTS `Aula` (
 --
 
 CREATE TABLE IF NOT EXISTS `GrupoAula` (
-  `codigo` varchar(3) NOT NULL,
-  `departamento` varchar(2) NOT NULL,
-  `facultad` varchar(2) NOT NULL,
-  `numero` varchar(3) NOT NULL,
-  `aula` varchar(10) NOT NULL,
+  `codigo` SMALLINT(3) UNSIGNED ZEROFILL NOT NULL,
+  `departamento` TINYINT(2) UNSIGNED ZEROFILL NOT NULL,
+  `facultad` TINYINT(2) UNSIGNED ZEROFILL NOT NULL,
+  `numero` SMALLINT(3) UNSIGNED ZEROFILL NOT NULL,
+  `aula` VARCHAR(10) NOT NULL,
   PRIMARY KEY (`codigo`,`departamento`, `facultad`, `numero`, `aula`),
   FOREIGN KEY (`codigo`,`departamento`, `facultad`, `numero`)
       REFERENCES Grupo(`codigo`,`departamento`, `facultad`, `numero`),
@@ -101,7 +101,7 @@ CREATE TABLE IF NOT EXISTS `GrupoAula` (
 --
 
 CREATE TABLE IF NOT EXISTS `Horario` (
-  `horario` varchar(20) NOT NULL,
+  `horario` VARCHAR(20) NOT NULL,
   PRIMARY KEY (`horario`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -112,11 +112,11 @@ CREATE TABLE IF NOT EXISTS `Horario` (
 --
 
 CREATE TABLE IF NOT EXISTS `GrupoHorario` (
-  `codigo` varchar(3) NOT NULL,
-  `departamento` varchar(2) NOT NULL,
-  `facultad` varchar(2) NOT NULL,
-  `numero` varchar(3) NOT NULL,
-  `horario` varchar(20) NOT NULL,
+  `codigo` SMALLINT(3) UNSIGNED ZEROFILL NOT NULL,
+  `departamento` TINYINT(2) UNSIGNED ZEROFILL NOT NULL,
+  `facultad` TINYINT(2) UNSIGNED ZEROFILL NOT NULL,
+  `numero` SMALLINT(3) UNSIGNED ZEROFILL NOT NULL,
+  `horario` VARCHAR(20) NOT NULL,
   PRIMARY KEY (`codigo`,`departamento`, `facultad`, `numero`, `horario`),
   FOREIGN KEY (`codigo`,`departamento`, `facultad`, `numero`)
       REFERENCES Grupo(`codigo`,`departamento`, `facultad`, `numero`),
