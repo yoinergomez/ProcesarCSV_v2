@@ -50,8 +50,8 @@ public class LeerCSV {
         GrupoProfesor profesor;
         
         try {
-            FileReader f = new FileReader("/home/esteban/Descargas/casosCSV.csv");
-            //FileReader f = new FileReader("/home/esteban/Descargas/PROGRAMACION.csv");
+            //FileReader f = new FileReader("/home/esteban/Descargas/casosCSV.csv");
+            FileReader f = new FileReader("/home/esteban/Descargas/PROGRAMACION.csv");
             BufferedReader b = new BufferedReader(f);
             
             b.readLine();

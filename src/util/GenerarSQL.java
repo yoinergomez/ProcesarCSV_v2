@@ -20,6 +20,7 @@ import javax.swing.JOptionPane;
 import model.Grupo;
 import model.GrupoAula;
 import model.GrupoHorario;
+import model.GrupoProfesor;
 import model.Materia;
 
 /**
@@ -125,7 +126,6 @@ public class GenerarSQL {
             sql.append("'").append(grupAulas.get(i).getAula()).append("'),\n");
         }
         sql.replace(sql.length() - 2, sql.length(), ";\n\n");
-        System.out.println(sql.toString());
     }
     
     public void generarGrupoHorario(ArrayList<GrupoHorario> grupHorario){
@@ -143,21 +143,26 @@ public class GenerarSQL {
             sql.append("'").append(grupHorario.get(i).getHorario()).append("'),\n");
         }
         sql.replace(sql.length() - 2, sql.length(), ";\n\n");
-        System.out.println(sql.toString());
     }
-//    
-//    public void mostrarGrupoProfesor(){
-//        System.out.println(profesores.size());
-//        sql.append("GruposProfesores "+profesores.size()+"\n");
-//        for (int i = 0; i < profesores.size(); i++) {
-//            System.out.println(profesores.get(i).getCodMateria()+
-//                    "\t"+profesores.get(i).getCedula()+
-//                    "\t"+profesores.get(i).getNombre());
-//            sql.append(profesores.get(i).getCodMateria()+
-//                    "\t"+profesores.get(i).getCedula()+
-//                    "\t"+profesores.get(i).getNombre()+"\n");
-//        }
-//    }
+    
+    public void generarGrupoProfesor(ArrayList<GrupoProfesor> grupProfesor){
+        final String insert = "INSERT INTO GrupoProfesor "
+                + "(`codigo`,`departamento`, `facultad`, `numero`, "
+                + "`cedula`) VALUES\n";
+        
+        System.out.println("GrupoProfesor encontrados: " + grupProfesor.size() + "\n");
+        sql.append(insert);
+        for (int i = 0; i < grupProfesor.size(); i++) {
+            sql.append("(").append(grupProfesor.get(i).getMateria()).append(", ");
+            sql.append(grupProfesor.get(i).getDepartamento()).append(", ");
+            sql.append(grupProfesor.get(i).getFacultad()).append(", ");
+            sql.append(grupProfesor.get(i).getNumero()).append(", ");
+            sql.append(grupProfesor.get(i).getCedula()).append("),\n");
+        }
+        sql.replace(sql.length() - 2, sql.length(), ";\n\n");
+        //System.out.println(sql.toString());
+    }
+    
     public void crearArchivoSQL() {
         String directorio = System.getProperty("user.dir") + "/PROGRAMACION.sql";
         File file = new File(directorio);

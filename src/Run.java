@@ -24,13 +24,15 @@ public class Run {
         generar.generarMaterias(leer.getMaterias());
         generar.generarGrupos(leer.getGrupos());
         generar.generarGrupoAula(leer.getAulas());
+        generar.generarGrupoHorario(leer.getHorarios());
+        generar.generarGrupoProfesor(leer.getProfesores());
+        generar.crearArchivoSQL();
         /*
         
-        generar.crearArchivoSQL();
+        
         
         leer.generarGrupoHorario();
-        leer.mostrarGrupoProfesor();
-        leer.crearArchivoSQL();
+        leer.generarGrupoProfesor();
         */
     }
 }
