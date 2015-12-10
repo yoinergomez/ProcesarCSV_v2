@@ -28,7 +28,7 @@ public class Run {
         
         generar.crearArchivoSQL();
         
-        leer.mostrarGrupoHorario();
+        leer.generarGrupoHorario();
         leer.mostrarGrupoProfesor();
         leer.crearArchivoSQL();
         */

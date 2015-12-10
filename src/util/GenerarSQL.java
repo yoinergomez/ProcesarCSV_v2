@@ -19,6 +19,7 @@ import java.util.Map;
 import javax.swing.JOptionPane;
 import model.Grupo;
 import model.GrupoAula;
+import model.GrupoHorario;
 import model.Materia;
 
 /**
@@ -74,7 +75,6 @@ public class GenerarSQL {
     
     
     public void generarMaterias(Map<String, Materia> materias) {
-
         final String insert = "INSERT INTO Materia "
                 + "(`codigo`,`departamento`, `facultad`, `nombre`) VALUES\n";
 
@@ -92,8 +92,7 @@ public class GenerarSQL {
         sql.replace(sql.length() - 2, sql.length(), ";\n\n");
     }
 
-    public void generarGrupos(ArrayList<Grupo> grupos){
-        
+    public void generarGrupos(ArrayList<Grupo> grupos){       
         final String insert = "INSERT INTO Grupo "
                 + "(`codigo`,`departamento`, `facultad`, `numero`, "
                 + "`cupo`, `matriculados`) VALUES\n";
@@ -109,7 +108,6 @@ public class GenerarSQL {
             sql.append(grupos.get(i).getMatriculados()).append("),\n");
         }
         sql.replace(sql.length() - 2, sql.length(), ";\n\n");
-        System.out.println(sql.toString());
     }
     
     public void generarGrupoAula(ArrayList<GrupoAula> grupAulas){
@@ -130,16 +128,23 @@ public class GenerarSQL {
         System.out.println(sql.toString());
     }
     
-//    public void mostrarGrupoHorario(){
-//        System.out.println(horarios.size());
-//        sql.append("GruposHorarios "+horarios.size()+"\n");
-//        for (int i = 0; i < horarios.size(); i++) {
-//            System.out.println(horarios.get(i).getCodMateria()+
-//                    "\t"+horarios.get(i).getHorario());
-//            sql.append(horarios.get(i).getCodMateria()+
-//                    "\t"+horarios.get(i).getHorario()+"\n");
-//        }
-//    }
+    public void generarGrupoHorario(ArrayList<GrupoHorario> grupHorario){
+        final String insert = "INSERT INTO GrupoHorario "
+                + "(`codigo`,`departamento`, `facultad`, `numero`, "
+                + "`horario`) VALUES\n";
+        
+        System.out.println("GrupoHorario encontrados: " + grupHorario.size() + "\n");
+        sql.append(insert);
+        for (int i = 0; i < grupHorario.size(); i++) {
+            sql.append("(").append(grupHorario.get(i).getMateria()).append(", ");
+            sql.append(grupHorario.get(i).getDepartamento()).append(", ");
+            sql.append(grupHorario.get(i).getFacultad()).append(", ");
+            sql.append(grupHorario.get(i).getNumero()).append(", ");
+            sql.append("'").append(grupHorario.get(i).getHorario()).append("'),\n");
+        }
+        sql.replace(sql.length() - 2, sql.length(), ";\n\n");
+        System.out.println(sql.toString());
+    }
 //    
 //    public void mostrarGrupoProfesor(){
 //        System.out.println(profesores.size());
