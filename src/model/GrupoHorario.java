@@ -13,6 +13,7 @@ public class GrupoHorario {
     private String materia;
     private String departamento;
     private String facultad;
+    private int numero;
     private String horario;
 
     public GrupoHorario(Grupo grupo, String horario) {
@@ -57,4 +58,13 @@ public class GrupoHorario {
     public String getCodMateria(){
         return facultad+departamento+materia;
     }
+
+    public int getNumero() {
+        return numero;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
+   
 }
