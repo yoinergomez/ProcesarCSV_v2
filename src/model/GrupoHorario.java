@@ -20,6 +20,7 @@ public class GrupoHorario {
         this.materia = grupo.getMateria();
         this.departamento = grupo.getDepartamento();
         this.facultad = grupo.getFacultad();
+        this.numero = grupo.getNumero();
         this.horario = horario;
     }
 

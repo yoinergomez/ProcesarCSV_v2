@@ -15,12 +15,14 @@ public class GrupoProfesor {
     private String departamento;
     private String facultad;
     private String cedula;
+    private int numero;
     private String nombre;
 
     public GrupoProfesor(Grupo grupo, String cedula, String nombre) {
         this.materia = grupo.getMateria();
         this.departamento = grupo.getDepartamento();
         this.facultad = grupo.getFacultad();
+        this.numero = grupo.getNumero();
         this.cedula = cedula;
         this.nombre = nombre;
     }
@@ -67,5 +69,13 @@ public class GrupoProfesor {
     
     public String getCodMateria(){
         return facultad+departamento+materia;
+    }
+    
+    public int getNumero() {
+        return numero;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
     }
 }
