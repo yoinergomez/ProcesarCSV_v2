@@ -12,16 +12,11 @@ import model.GrupoHorario;
 import model.GrupoProfesor;
 import model.Materia;
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 import javax.swing.JOptionPane;
 
@@ -32,7 +27,7 @@ import javax.swing.JOptionPane;
 public class LeerCSV {
     
     private Map<String, Materia> materias = new HashMap<>();
-    private ArrayList<Grupo> grupos = new ArrayList<>();
+    private Map<String, Grupo> grupos = new HashMap<>();
     private ArrayList<GrupoAula> grupAulas = new ArrayList<>();
     private ArrayList<GrupoHorario> horarios = new ArrayList<>();
     private ArrayList<GrupoProfesor> profesores = new ArrayList<>();
@@ -51,7 +46,7 @@ public class LeerCSV {
         
         try {
             //FileReader f = new FileReader("/home/esteban/Descargas/casosCSV.csv");
-            FileReader f = new FileReader("/home/esteban/Descargas/PROGRAMACION.csv");
+            FileReader f = new FileReader("/home/esteban/Descargas/PROGRAMACIONTOTAL.csv");
             BufferedReader b = new BufferedReader(f);
             
             b.readLine();
@@ -72,7 +67,7 @@ public class LeerCSV {
                                       primero.getGr(), 
                                       primero.getCupo(), 
                                       primero.getMatri());
-                    grupos.add(grupo);
+                    grupos.put(grupo.getCodMateria()+grupo.getNumero(), grupo);
                     
                     if (primero.existeAula()){
                         aula = new GrupoAula(grupo, primero.getBloqueAula());
@@ -119,6 +114,9 @@ public class LeerCSV {
                                                     primero.getCedula(), 
                                                     primero.getProfesor());
                         profesores.add(profesor);
+                        if(profesor.getCedula().contains("\"")){
+                            System.out.println("Entre: "+"\t" +profesores.size());
+                        }
                     }
                 }
             }
@@ -145,7 +143,7 @@ public class LeerCSV {
         return materias;
     }
 
-    public ArrayList<Grupo> getGrupos() {
+    public Map<String, Grupo> getGrupos() {
         return grupos;
     }
 
