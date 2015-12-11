@@ -33,19 +33,19 @@ public class FilaCSV {
      */
     public FilaCSV(String csv){
         
-        String[] frag = csv.split(",",12);
-        fac = frag[0];
-        dep = frag[1];
-        ide = frag[2];
-        mat = frag[3];
-        gr = frag[4];
-        nombre = frag[5];
-        cupo = frag[6];
-        matri = frag[7];
-        bloqueAula = frag[8];       
-        horario = frag[9];
-        cedula = frag[10];
-        profesor = frag[11];
+        String[] frag = csv.split(";",12);
+        fac = eliminarASCII(frag[0]);
+        dep = eliminarASCII(frag[1]);
+        ide = eliminarASCII(frag[2]);
+        mat = eliminarASCII(frag[3]);
+        gr = eliminarASCII(frag[4]);
+        nombre = eliminarASCII(frag[5]);
+        cupo = eliminarASCII(frag[6]);
+        matri = eliminarASCII(frag[7]);
+        bloqueAula = eliminarASCII(frag[8]);   
+        horario = eliminarASCII(frag[9]);
+        cedula = eliminarASCII(frag[10]);
+        profesor = eliminarASCII(frag[11]);
     }
     
     public boolean existeMateria(){
@@ -188,5 +188,9 @@ public class FilaCSV {
         this.profesor = profesor;
     }
 
-    
+    public String eliminarASCII(String sub){
+        sub = sub.replaceAll("[^\\u0000-\\uFFFF]", "");
+        sub = sub.replaceAll("[^\\x20-\\x7e]", "");
+        return sub;
+    }
 }
