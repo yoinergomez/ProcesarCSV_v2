@@ -129,29 +129,24 @@ public class GenerarSQL {
             sql.append(grupAulas.get(key).getNumero()).append(", ");
             sql.append("'").append(grupAulas.get(key).getAula()).append("'),\n");
         }
-        for (int i = 0; i < grupAulas.size(); i++) {
-            sql.append("(").append(grupAulas.get(i).getMateria()).append(", ");
-            sql.append(grupAulas.get(i).getDepartamento()).append(", ");
-            sql.append(grupAulas.get(i).getFacultad()).append(", ");
-            sql.append(grupAulas.get(i).getNumero()).append(", ");
-            sql.append("'").append(grupAulas.get(i).getAula()).append("'),\n");
-        }
         sql.replace(sql.length() - 2, sql.length(), ";\n\n");
     }
     
-    public void generarGrupoHorario(ArrayList<GrupoHorario> grupHorario){
+    public void generarGrupoHorario(Map<String, GrupoHorario> grupHorario){
         final String insert = "INSERT INTO GrupoHorario "
                 + "(`codigo`,`departamento`, `facultad`, `numero`, "
                 + "`horario`) VALUES\n";
         
         System.out.println("GrupoHorario encontrados: " + grupHorario.size() + "\n");
+        Iterator it = grupHorario.keySet().iterator();
         sql.append(insert);
-        for (int i = 0; i < grupHorario.size(); i++) {
-            sql.append("(").append(grupHorario.get(i).getMateria()).append(", ");
-            sql.append(grupHorario.get(i).getDepartamento()).append(", ");
-            sql.append(grupHorario.get(i).getFacultad()).append(", ");
-            sql.append(grupHorario.get(i).getNumero()).append(", ");
-            sql.append("'").append(grupHorario.get(i).getHorario()).append("'),\n");
+        while (it.hasNext()) {
+            String key = (String) it.next();
+            sql.append("(").append(grupHorario.get(key).getMateria()).append(", ");
+            sql.append(grupHorario.get(key).getDepartamento()).append(", ");
+            sql.append(grupHorario.get(key).getFacultad()).append(", ");
+            sql.append(grupHorario.get(key).getNumero()).append(", ");
+            sql.append("'").append(grupHorario.get(key).getHorario()).append("'),\n");
         }
         sql.replace(sql.length() - 2, sql.length(), ";\n\n");
     }

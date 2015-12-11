@@ -29,8 +29,7 @@ public class LeerCSV {
     private Map<String, Materia> materias = new HashMap<>();
     private Map<String, Grupo> grupos = new HashMap<>();
     private Map<String, GrupoAula> grupAulas = new HashMap<>();
-    //private ArrayList<GrupoAula> grupAulas = new ArrayList<>();
-    private ArrayList<GrupoHorario> horarios = new ArrayList<>();
+    private Map<String, GrupoHorario> horarios = new HashMap<>();
     private ArrayList<GrupoProfesor> profesores = new ArrayList<>();
     private StringBuilder sql = new StringBuilder();
     
@@ -78,7 +77,8 @@ public class LeerCSV {
                     
                     if (primero.existeHorario()){
                         horario = new GrupoHorario(grupo, primero.getHorario());
-                        horarios.add(horario);
+                        horarios.put(horario.getCodMateria()+
+                           horario.getNumero()+horario.getHorario(), horario);
                     }
                     
                     if (primero.existeProfesor()){
@@ -109,7 +109,8 @@ public class LeerCSV {
                     
                     if (primero.existeHorario()){
                         horario = new GrupoHorario(grupo, primero.getHorario());
-                        horarios.add(horario);
+                        horarios.put(horario.getCodMateria()+
+                           horario.getNumero()+horario.getHorario(), horario);
                     }
                     
                     if (primero.existeProfesor()){
@@ -117,9 +118,6 @@ public class LeerCSV {
                                                     primero.getCedula(), 
                                                     primero.getProfesor());
                         profesores.add(profesor);
-                        if(profesor.getCedula().contains("\"")){
-                            System.out.println("Entre: "+"\t" +profesores.size());
-                        }
                     }
                 }
             }
@@ -154,7 +152,7 @@ public class LeerCSV {
         return grupAulas;
     }
 
-    public ArrayList<GrupoHorario> getHorarios() {
+    public Map<String, GrupoHorario> getHorarios() {
         return horarios;
     }
 
