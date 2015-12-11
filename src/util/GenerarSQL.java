@@ -113,13 +113,22 @@ public class GenerarSQL {
         sql.replace(sql.length() - 2, sql.length(), ";\n\n");
     }
     
-    public void generarGrupoAula(ArrayList<GrupoAula> grupAulas){
+    public void generarGrupoAula(Map<String, GrupoAula> grupAulas){
         final String insert = "INSERT INTO GrupoAula "
                 + "(`codigo`,`departamento`, `facultad`, `numero`, "
                 + "`aula`) VALUES\n";
         
         System.out.println("GrupoAula encontrados: " + grupAulas.size() + "\n");
+        Iterator it = grupAulas.keySet().iterator();
         sql.append(insert);
+        while (it.hasNext()) {
+            String key = (String) it.next();
+            sql.append("(").append(grupAulas.get(key).getMateria()).append(", ");
+            sql.append(grupAulas.get(key).getDepartamento()).append(", ");
+            sql.append(grupAulas.get(key).getFacultad()).append(", ");
+            sql.append(grupAulas.get(key).getNumero()).append(", ");
+            sql.append("'").append(grupAulas.get(key).getAula()).append("'),\n");
+        }
         for (int i = 0; i < grupAulas.size(); i++) {
             sql.append("(").append(grupAulas.get(i).getMateria()).append(", ");
             sql.append(grupAulas.get(i).getDepartamento()).append(", ");

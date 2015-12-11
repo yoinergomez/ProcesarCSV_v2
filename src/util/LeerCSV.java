@@ -28,7 +28,8 @@ public class LeerCSV {
     
     private Map<String, Materia> materias = new HashMap<>();
     private Map<String, Grupo> grupos = new HashMap<>();
-    private ArrayList<GrupoAula> grupAulas = new ArrayList<>();
+    private Map<String, GrupoAula> grupAulas = new HashMap<>();
+    //private ArrayList<GrupoAula> grupAulas = new ArrayList<>();
     private ArrayList<GrupoHorario> horarios = new ArrayList<>();
     private ArrayList<GrupoProfesor> profesores = new ArrayList<>();
     private StringBuilder sql = new StringBuilder();
@@ -71,7 +72,8 @@ public class LeerCSV {
                     
                     if (primero.existeAula()){
                         aula = new GrupoAula(grupo, primero.getBloqueAula());
-                        grupAulas.add(aula);
+                        grupAulas.put(aula.getCodMateria()+
+                                aula.getNumero()+aula.getAula(), aula);
                     }
                     
                     if (primero.existeHorario()){
@@ -101,7 +103,8 @@ public class LeerCSV {
                     
                     if (primero.existeAula()){
                         aula = new GrupoAula(grupo, primero.getBloqueAula());
-                        grupAulas.add(aula);
+                        grupAulas.put(aula.getCodMateria()+
+                                aula.getNumero()+aula.getAula(), aula);
                     }
                     
                     if (primero.existeHorario()){
@@ -147,7 +150,7 @@ public class LeerCSV {
         return grupos;
     }
 
-    public ArrayList<GrupoAula> getAulas() {
+    public Map<String, GrupoAula> getAulas() {
         return grupAulas;
     }
 
